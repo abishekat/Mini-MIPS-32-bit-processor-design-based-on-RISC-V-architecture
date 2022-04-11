@@ -1,0 +1,16 @@
+module ALU_A_FWD (
+  output reg [31:0] alu_ip_1, 
+  input [31:0] rs_in, ex_dm_alu_out,dm_wb_mux_out,
+  input [1:0] fwd_ctrl_a
+  );
+  
+  always @(*)
+  begin
+    case(fwd_ctrl_a)
+      2'd0 : alu_ip_1 = ex_dm_alu_out;
+      2'd1 : alu_ip_1 = dm_wb_mux_out;
+      2'd2 : alu_ip_1 = rs_in;
+    endcase
+  end
+  
+endmodule

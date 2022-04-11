@@ -1,0 +1,16 @@
+module TB_IF_ID;
+  reg [31:0] pc_4_in, ins_in;
+  reg if_id_reg_ctrl, clk;
+  wire [31:0] if_id_pc_4_out, if_id_ins_out;
+  
+  IF_ID_SB TB_IF_ID_SB(pc_4_in, ins_in, if_id_reg_ctrl, clk, if_id_ins_out, if_id_pc_4_out);
+  
+  initial
+    begin
+      clk = 1'b0;
+      pc_4_in = 32'b0;
+      ins_in = 32'b0;
+      if_id_reg_ctrl = 1'b0;
+    end
+  
+endmodule

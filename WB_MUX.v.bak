@@ -1,0 +1,10 @@
+module WB_MUX(
+  wb_out,
+  dm_wb_alu_out,
+  dm_wb_data_out,
+  wb_mux_ctrl
+  );
+  
+  assign wb_out = wb_mux_ctrl ? dm_wb_alu_out : dm_wb_data_out;
+  
+endmodule

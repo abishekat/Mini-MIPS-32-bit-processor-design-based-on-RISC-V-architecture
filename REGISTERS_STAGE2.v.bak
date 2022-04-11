@@ -1,0 +1,59 @@
+module REGISTER_STAGE2(
+  rs_data,
+  rt_data,
+  rs_addr,
+  rt_addr,
+  wd_addr,
+  wd_data,
+  r_enable,
+  w_enable,
+  clk
+  );
+  
+  input [4:0] rs_addr, rt_addr, wd_addr;
+  input [31:0] wd_data;
+  input r_enable, w_enable, clk;
+  output reg [31:0] rs_data, rt_data;
+  
+  reg [31:0] reg_file [0:31];
+  
+  initial
+    begin
+      reg_file[0] = 32'd0;
+      reg_file[1] = 32'd1;
+      reg_file[2] = 32'd2;
+      reg_file[3] = 32'd3;
+      reg_file[4] = 32'd4;
+      reg_file[5] = 32'd5;
+      reg_file[6] = 32'd6;
+      reg_file[7] = 32'd7;
+      reg_file[8] = 32'd8;
+      reg_file[9] = 32'd9;
+      reg_file[10] = 32'd10;
+      reg_file[11] = 32'd11;
+      reg_file[12] = 32'd12;
+    end
+  
+  always @ (rs_addr or rt_addr or r_enable)
+    begin
+      if(r_enable)
+        begin
+          rs_data = reg_file[rs_addr];
+          rt_data = reg_file[rt_addr];
+        end
+    end
+    
+  always @(negedge clk)
+    begin
+      if(w_enable)
+          begin
+            case(wd_addr)
+              
+              5'd0 : reg_file[0] <= wd_data;
+              
+              default : $display("invalid");
+            endcase
+          end
+    end
+  
+endmodule

@@ -1,0 +1,8 @@
+module BEQ_ALU(
+  input [31:0] id_ex_pc_4_out, sign_ext_out,
+  output [31:0] beq_addr
+  );
+  
+  assign beq_addr = id_ex_pc_4_out + sign_ext_out;
+  
+endmodule

@@ -1,0 +1,8 @@
+module SIGNED_EXT(
+  input [15:0] sign_ext_in,
+  output [31:0] sign_ext_op
+  );
+  
+  assign sign_ext_op = {{16{sign_ext_in[15]}}, sign_ext_in};
+  
+endmodule
