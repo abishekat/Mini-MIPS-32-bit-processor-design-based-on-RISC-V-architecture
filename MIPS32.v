@@ -1,0 +1,108 @@
+module MIPS32(input clk,  output [31:0] c_inst, c_if_id_inst_out, c_id_ex_inst_out, c_ex_dm_inst_out, c_pc_4_out, c_rs_data, c_rt_data, 
+output c_r_enable, c_rd_addr_ctrl, c_rd_enable_ctrl, c_o_w_enable, c_o_alu_ctrl, 
+  c_o_r_i_sel_ctrl, c_o_rd_ctrl, c_o_wd_ctrl, c_o_wb_mux_ctrl, c_o_fwd_dm_ctrl, c_o_beq_and_in, 
+output [1:0] c_o_fwd_ctrl_a, c_o_fwd_ctrl_b, 
+output [4:0] c_rd_out_addr, c_id_ex_rd_out_addr, c_ex_dm_rd_out_addr);
+
+wire [31:0] inst_addr, pc_in, pc_4_out, inst, if_id_inst_out, if_id_pc_4_out, ex_dm_inst_out, rs_data, rt_data, 
+id_ex_pc_4_out, id_ex_inst_out , id_ex_rs_data, id_ex_rt_data, sign_ext_out, alu_ip1, alu_ip2, alu_out, dm_wb_mux_out, ex_dm_alu_out, rt_sig_ext_out, ex_dm_rt_data, 
+write_data, dm_out, wb_dm_out, wb_dm_alu_out, beq_adr;
+
+wire pcw_ctrl, if_id_reg_ctrl, w_enable, alu_ctrl, buble_mux_ctrl, r_i_sel_ctrl, rd_ctrl, wd_ctrl, wb_mux_ctrl, fwd_dm_ctrl, rd_adr_ctrl, 
+rd_enable_ctrl, r_enable, wb_dm_w_enable, o_w_enable, o_alu_ctrl, o_r_i_sel_ctrl, o_rd_ctrl, o_wd_ctrl, o_wb_mux_ctrl, o_fwd_dm_ctrl, 
+id_ex_w_enable, id_ex_alu_ctrl, id_ex_r_i_sel_ctrl, id_ex_rd_ctrl, id_ex_wd_ctrl, id_ex_wb_mux_ctrl, id_ex_fwd_dm_ctrl, 
+ex_dm_fwd_dm_ctrl, ex_dm_wb_mux_ctrl, ex_dm_wd_ctrl, ex_dm_rd_ctrl, ex_dm_w_enable, wb_dm_wb_mux_ctrl, beq_and_in2, o_beq_and_in2, beq_and_in, beq_and_in1, 
+mux_sel_control, beq_inst;
+
+wire [1:0] fwd_ctrl_a, fwd_ctrl_b, o_fwd_ctrl_a, o_fwd_ctrl_b, id_ex_fwd_ctrl_a, id_ex_fwd_ctrl_b, alu_op_control;
+wire [4:0] ex_dm_rd_out_adr, rd_out_adr, id_ex_rd_out_adr, wb_dm_rd_out_adr;
+wire [15:0] id_ex_sig_ext_in;
+
+PROGRAM_COUNTER PC(inst_addr, pc_in, pcw_ctrl, clk);
+INSTRUCTION_MEMORY IM(inst, inst_addr);
+PC_ADDER_4 PC4(pc_4_out, inst_addr);
+PC_ADDER_BEQ_MUX PC_MUX(pc_in, beq_adr,  pc_4_out, mux_sel_control);
+
+/*####################################################################################*/
+
+IF_ID_SB S1_BUFFER(pc_4_out, inst, if_id_reg_ctrl, clk,  if_id_inst_out, if_id_pc_4_out);
+
+/*####################################################################################*/
+
+CONTROLLER C1(if_id_inst_out,  id_ex_inst_out,  ex_dm_inst_out, id_ex_rd_out_adr,  ex_dm_rd_out_adr,  
+r_enable, w_enable, alu_ctrl, buble_mux_ctrl, if_id_reg_ctrl, pcw_ctrl, rd_adr_ctrl, rd_enable_ctrl, r_i_sel_ctrl, rd_ctrl, 
+wd_ctrl, wb_mux_ctrl, fwd_dm_ctrl, beq_and_in2,  fwd_ctrl_a, fwd_ctrl_b);
+
+BUBLE BUB(w_enable, alu_ctrl, buble_mux_ctrl, r_i_sel_ctrl, rd_ctrl, wd_ctrl, wb_mux_ctrl, fwd_dm_ctrl, beq_and_in2, 
+fwd_ctrl_a, fwd_ctrl_b, o_w_enable, o_alu_ctrl, o_r_i_sel_ctrl, o_rd_ctrl, o_wd_ctrl, o_wb_mux_ctrl, o_fwd_dm_ctrl,  
+o_beq_and_in2, o_fwd_ctrl_a, o_fwd_ctrl_b);
+
+REGISTERS_STAGE2 REG(rs_data, rt_data, if_id_inst_out[25:21], if_id_inst_out[20:16], wb_dm_rd_out_adr, dm_wb_mux_out, r_enable, wb_dm_w_enable, clk);
+
+RD_ADDR_MUX RD_MUX(rd_out_adr, if_id_inst_out[20:16], if_id_inst_out[15:11], rd_adr_ctrl,  rd_enable_ctrl);
+
+/*####################################################################################*/
+
+ ID_EX_SB S2_BUFFER(o_w_enable, o_alu_ctrl, o_r_i_sel_ctrl, o_rd_ctrl, o_wd_ctrl, o_wb_mux_ctrl, o_fwd_dm_ctrl, clk, o_beq_and_in2, 
+ o_fwd_ctrl_a, o_fwd_ctrl_b, rd_out_adr, if_id_inst_out[15:0], if_id_pc_4_out, if_id_inst_out, rs_data, rt_data, 
+ id_ex_w_enable, id_ex_alu_ctrl, id_ex_r_i_sel_ctrl, id_ex_rd_ctrl, id_ex_wd_ctrl, id_ex_wb_mux_ctrl, id_ex_fwd_dm_ctrl, beq_and_in1, 
+ id_ex_fwd_ctrl_a, id_ex_fwd_ctrl_b, id_ex_rd_out_adr, id_ex_sig_ext_in, id_ex_pc_4_out, id_ex_inst_out , id_ex_rs_data, id_ex_rt_data);
+
+
+/*####################################################################################*/
+
+ ALU ALU(alu_out,  beq_and_in, alu_ip1, alu_ip2, alu_op_control, id_ex_alu_ctrl, beq_inst);
+ ALU_CONTROLLER ALU_CON(id_ex_inst_out, alu_op_control, beq_inst);
+ ALU_A_FWD FWD_A(alu_ip1, id_ex_rs_data,  ex_dm_alu_out,  dm_wb_mux_out, id_ex_fwd_ctrl_a);
+ ALU_B_FWD FWD_B(alu_ip2, rt_sig_ext_out,  ex_dm_alu_out,  dm_wb_mux_out, id_ex_fwd_ctrl_b);
+ R_IN_MUX_SEL R_IN_MUX_SEL(rt_sig_ext_out, id_ex_rt_data, sign_ext_out, id_ex_r_i_sel_ctrl);
+ SIGNED_EXT SE(id_ex_sig_ext_in, sign_ext_out);
+ BEQ_MODULE BE_MOD(beq_and_in1, beq_and_in, mux_sel_control );
+ BEQ_ALU BE_ALU(id_ex_pc_4_out, sign_ext_out, beq_adr);
+
+ /*####################################################################################*/
+  EX_DM_SB S3_BUFFER(alu_out, id_ex_rt_data, id_ex_inst_out, id_ex_rd_out_adr, id_ex_fwd_dm_ctrl, id_ex_wb_mux_ctrl, 
+  id_ex_wd_ctrl, id_ex_rd_ctrl, id_ex_w_enable, clk, ex_dm_alu_out, ex_dm_rt_data, ex_dm_inst_out, ex_dm_rd_out_adr,  
+  ex_dm_fwd_dm_ctrl, ex_dm_wb_mux_ctrl, ex_dm_wd_ctrl, ex_dm_rd_ctrl, ex_dm_w_enable);
+
+/*####################################################################################*/
+ 
+// DM_ADDR_SEL_MUX DM_ADDRSELMUX(write_data, ex_dm_rt_data, dm_wb_mux_out, ex_dm_fwd_dm_ctrl);
+
+// DATA_MEM DM1(dm_out, ex_dm_alu_out, write_data, ex_dm_rd_ctrl, ex_dm_wd_ctrl, clk);
+
+/*####################################################################################*/
+// DM_WB_SB S4_BUFFER(dm_out, ex_dm_alu_out, ex_dm_rd_out_adr,  ex_dm_w_enable, ex_dm_wb_mux_ctrl, clk, 
+// wb_dm_out, wb_dm_alu_out, wb_dm_rd_out_adr, wb_dm_w_enable, wb_dm_wb_mux_ctrl);
+
+/*####################################################################################*/
+
+WB_MUX WM1(dm_wb_mux_out, wb_dm_alu_out, wb_dm_out, wb_dm_wb_mux_ctrl);
+
+assign c_inst = inst;
+assign c_if_id_inst_out = if_id_inst_out;
+assign c_id_ex_inst_out = id_ex_inst_out;
+assign c_ex_dm_inst_out = ex_dm_inst_out;
+assign c_pc_4_out = pc_4_out;
+
+assign c_r_enable =r_enable;
+assign c_rd_addr_ctrl = rd_adr_ctrl;
+assign c_rd_enable_ctrl = rd_enable_ctrl;
+assign c_rs_data = rs_data;
+assign c_rt_data = rt_data;
+assign c_rd_out_addr = rd_out_adr;
+assign c_id_ex_rd_out_addr = id_ex_rd_out_adr;
+assign c_ex_dm_rd_out_addr = ex_dm_rd_out_adr;
+assign c_o_w_enable = o_w_enable;
+assign c_o_alu_ctrl = o_alu_ctrl; 
+assign c_o_r_i_sel_ctrl = o_r_i_sel_ctrl;
+assign c_o_rd_ctrl = o_rd_ctrl;
+assign c_o_wd_ctrl = o_wd_ctrl;
+assign c_o_wb_mux_ctrl = o_wb_mux_ctrl;
+assign c_o_fwd_dm_ctrl = o_fwd_dm_ctrl;
+assign c_o_beq_and_in = o_beq_and_in2;
+assign c_o_fwd_ctrl_a = o_fwd_ctrl_a;
+assign c_o_fwd_ctrl_b = o_fwd_ctrl_b;
+
+
+endmodule
