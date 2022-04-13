@@ -22,6 +22,7 @@ case(alu_op_ctrl)
   2'd3 : alu_out =  ~(alu_ip1 & alu_ip2);
   2'd4 : alu_out =  alu_ip1 - alu_ip2;
   2'd5 : alu_out =  alu_ip1 + alu_ip2;
+  default: $display("INVALID INSTRUCTION");
 endcase					   
 end
  

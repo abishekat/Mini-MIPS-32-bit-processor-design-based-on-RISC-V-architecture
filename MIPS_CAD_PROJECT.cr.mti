@@ -12,6 +12,13 @@ Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 Top level modules:
 	TB_IF_ID
 
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/EX_DM_SB.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/EX_DM_SB.v
+Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
+-- Compiling module EX_DM_SB
+
+Top level modules:
+	EX_DM_SB
+
 } {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BEQ_ALU.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BEQ_ALU.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 -- Compiling module BEQ_ALU
@@ -47,6 +54,27 @@ Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 Top level modules:
 	ALU_B_FWD
 
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU_BLOCK.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU_BLOCK.v
+Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
+-- Compiling module ALU_BLOCK
+
+Top level modules:
+	ALU_BLOCK
+
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ID_EX_SB.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ID_EX_SB.v
+Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
+-- Compiling module ID_EX_SB
+
+Top level modules:
+	ID_EX_SB
+
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU_CONTROLLER.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU_CONTROLLER.v
+Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
+-- Compiling module ALU_CONTROLLER
+
+Top level modules:
+	ALU_CONTROLLER
+
 } {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/TEST_BENCH_IF.v {2 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/TEST_BENCH_IF.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 -- Compiling module TEST_BENCH_IF
@@ -65,19 +93,19 @@ Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 Top level modules:
 	REGISTER_STAGE2
 
-} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/IF_ID_SB.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/IF_ID_SB.v
-Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
--- Compiling module IF_ID_SB
-
-Top level modules:
-	IF_ID_SB
-
 } {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/PROGRAM_COUNTER.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/PROGRAM_COUNTER.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 -- Compiling module PROGRAM_COUNTER
 
 Top level modules:
 	PROGRAM_COUNTER
+
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/IF_ID_SB.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/IF_ID_SB.v
+Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
+-- Compiling module IF_ID_SB
+
+Top level modules:
+	IF_ID_SB
 
 } {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ID_STAGE.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ID_STAGE.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
@@ -93,26 +121,12 @@ Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 Top level modules:
 	RD_ADDR_MUX
 
-} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/INSTRUCTION_MEMORY.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/INSTRUCTION_MEMORY.v
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/WB_MUX.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/WB_MUX.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
--- Compiling module INSTRUCTION_MEMORY
+-- Compiling module WB_MUX
 
 Top level modules:
-	INSTRUCTION_MEMORY
-
-} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BUBLE.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BUBLE.v
-Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
--- Compiling module BUBLE
-
-Top level modules:
-	BUBLE
-
-} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/IF_STAGE.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/IF_STAGE.v
-Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
--- Compiling module IF_STAGE
-
-Top level modules:
-	IF_STAGE
+	WB_MUX
 
 } {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/SIGNED_EXT.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/SIGNED_EXT.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
@@ -121,25 +135,26 @@ Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 Top level modules:
 	SIGNED_EXT
 
-} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/WB_MUX.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/WB_MUX.v
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/IF_STAGE.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/IF_STAGE.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
--- Compiling module WB_MUX
+-- Compiling module IF_STAGE
 
 Top level modules:
-	WB_MUX
+	IF_STAGE
 
-} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU.v {0 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU.v
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BUBLE.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BUBLE.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
--- Compiling module ALU
-** Error: /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU.v(106): (vlog-2110) Illegal reference to net "beq_inst".
-** Error: /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU.v(111): (vlog-2110) Illegal reference to net "beq_inst".
-
-} {4.0 6.0} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BUB_CONTROLLER.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BUB_CONTROLLER.v
-Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
--- Compiling module BUB_CONTROLLER
+-- Compiling module BUBLE
 
 Top level modules:
-	BUB_CONTROLLER
+	BUBLE
+
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/INSTRUCTION_MEMORY.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/INSTRUCTION_MEMORY.v
+Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
+-- Compiling module INSTRUCTION_MEMORY
+
+Top level modules:
+	INSTRUCTION_MEMORY
 
 } {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/R_IN_MUX_SEL.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/R_IN_MUX_SEL.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
@@ -148,12 +163,19 @@ Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 Top level modules:
 	R_IN_MUX_SEL
 
-} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BEQ_MODULE.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BEQ_MODULE.v
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BUB_CONTROLLER.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BUB_CONTROLLER.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
--- Compiling module BEQ_MODULE
+-- Compiling module BUB_CONTROLLER
 
 Top level modules:
-	BEQ_MODULE
+	BUB_CONTROLLER
+
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/DM_WB_SB.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/DM_WB_SB.v
+Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
+-- Compiling module DM_WB_SB
+
+Top level modules:
+	DM_WB_SB
 
 } {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/PC_ADDER_4.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/PC_ADDER_4.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
@@ -161,5 +183,19 @@ Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 
 Top level modules:
 	PC_ADDER_4
+
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BEQ_MODULE.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BEQ_MODULE.v
+Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
+-- Compiling module BEQ_MODULE
+
+Top level modules:
+	BEQ_MODULE
+
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/MIPS32.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/MIPS32.v
+Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
+-- Compiling module MIPS32
+
+Top level modules:
+	MIPS32
 
 } {} {}}

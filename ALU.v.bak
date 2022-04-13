@@ -1,114 +1,45 @@
-module ALU(alu_out, beq_and_in1, alu_ip1, alu_ip2, id_ex_inst, alu_op_control, alu_control, beq_inst);
+module ALU(output reg signed [31:0] alu_out,
+ output reg beq_and_in1, 
+ input signed [31:0] alu_ip1,alu_ip2, 
+ input [4:0] alu_op_ctrl, 
+ input alu_control,beq_inst);
 
-output reg signed [31:0] alu_out;
-output reg beq_and_in1;
-input signed [31:0] alu_ip1, alu_ip2;
-input [31:0] id_ex_inst;
-input [1:0] alu_op_control;
-input alu_control, beq_inst;
-reg [4:0] shamt;
-reg [15:0] immediate;
-reg [5:0] opcode;
-reg [31:0] signextend, zeroextend;
-reg [5:0] funct;
-
-//assign opcode = id_ex_inst[31:26];
-always @(id_ex_inst) begin
-  opcode = id_ex_inst[31:26];
-  if(opcode == 6'h0) begin  // R-type
-    shamt = id_ex_inst[10:6];
-    funct = id_ex_inst[5:0];
-  end
-  else begin // I type
-    immediate = id_ex_inst[15:0];
-  end
-end
-        
-always @(alu_control, alu_op_control, alu_ip1, alu_ip2, shamt, immediate)
+/* alu control signals : 0000 - OR
+                       : 0001 - SHIFT
+                       : 0010 - XNOR
+                       : 0011 - NAND
+                       : 0100 - SUB
+                       : 0101 - ADD
+                       : 0110 - NOT EQUAL*/
+always @(*)
 begin
-  signextend = {{16{immediate[15]}}, immediate};
-  zeroextend = {{16{1'b0}}, immediate};
   if(alu_control)
     begin
-    
-    // R-type instruction
-    if(opcode == 6'h0) begin
-      case(funct) // Function
-      
-        6'h22 : //SUB
-          alu_out = alu_ip1 - alu_ip2; 
-          
-        6'h00 : //SLL
-          alu_out = (alu_ip2 << shamt); 
-     
-        6'b000100 : alu_out = ~(alu_ip1 ^ alu_ip2); // XNOR
-        6'b000101 : alu_out = ~(alu_ip1 & alu_ip2); // NAND
-      endcase
-    end // if		
-    // I type
-    else begin
-      
-      signextend = {{16{immediate[15]}}, immediate};
-      zeroextend = {{16{1'b0}}, immediate};
-      
-      case(opcode)
-    
-        6'h9 : // ADDIU
-          alu_out = alu_ip1 + signextend; 
-        
-        6'h5 : // BNE
-          begin
-            // if the result is not zero, they are not equal go branch!
-            alu_out = alu_ip1 - alu_ip2;
-            if(alu_out != 0) begin
-              beq_and_in1 = 1'b1;
-              alu_out = 1'b0;
-            end
-            else begin
-              beq_and_in1 = 1'b0;
-            end
-          end
-        
-        6'b010011 : // ORI
-          alu_out = alu_ip1 | zeroextend; 
-        
-        6'h28 : // SUB
-          alu_out = alu_ip1 - alu_ip2; 
-
-        6'b001001: //BEQ
-        begin
-         // alu_op_control = 2'b01;
-         // beq_inst = 1'b1;
-        end
-      endcase
-    
-    end			   
-  end
+case(alu_op_ctrl)
+  2'd0 : alu_out =  alu_ip1 | alu_ip2;
+  2'd1 : alu_out =  alu_ip1 << alu_ip2;
+  2'd2 : alu_out =  ~(alu_ip1 ^ alu_ip2);
+  2'd3 : alu_out =  ~(alu_ip1 & alu_ip2);
+  2'd4 : alu_out =  alu_ip1 - alu_ip2;
+  2'd5 : alu_out =  alu_ip1 + alu_ip2;
+  default: $display("INVALID INSTRUCTION")
+endcase					   
+end
+ 
 else
-    alu_out = 32'bX;
+   alu_out = 32'bX;
 end
 
-always@(alu_out, beq_inst)
-  begin
-    if(beq_inst)
-      begin
-        if(alu_out==0)
-          beq_and_in1 = 1'b1;
-        else
-          beq_and_in1 = 1'b0;
-      end
-    else
-      beq_and_in1 = 1'b0;
-      
-    if (opcode == 6'b001001)
-      begin
-      //  alu_op_control = 2'b01;
-        beq_inst = 1'b1;
-      end
-    else
-      begin
-      //  alu_op_control = 2'b00;
-        beq_inst = 1'b0;
-      end
-  end
+always@(alu_out,beq_inst)
+begin
+if(beq_inst)
+begin
+if(alu_out==0)
+beq_and_in1 = 1'b1;
+else
+beq_and_in1 = 1'b0;
+end
+else
+beq_and_in1 = 1'b0;
+end
 endmodule
