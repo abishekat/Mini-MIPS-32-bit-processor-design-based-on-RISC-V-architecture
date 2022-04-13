@@ -1,0 +1,20 @@
+module BUB_CONTROLLER (
+  input [31:0] if_id_inst, id_ex_inst, ex_dm_inst, 
+  input [4:0] id_ex_wb_addr,ex_dm_wb_addr,
+  output b_w_enable, b_alu_ctrl, b_r_i_sel_ctrl, b_rd_ctrl, b_wd_ctrl, b_wb_mux_ctrl, b_fwd_dm_ctrl, b_beq_and_in,
+  r_enable, if_id_reg_ctrl, pcw_ctrl, rd_addr_ctrl, rd_enable_ctrl,
+  output [1:0] b_fwd_ctrl_a, b_fwd_ctrl_b
+  );
+  
+  wire w_enable, alu_ctrl, buble_mux_ctrl, r_i_sel_ctrl, rd_ctrl, wd_ctrl, wb_mux_ctrl, fwd_dm_ctrl, beq_and_in;
+  wire [1:0] fwd_ctrl_a, fwd_ctrl_b;
+  
+  BUBLE B1(w_enable, alu_ctrl, buble_mux_ctrl, r_i_sel_ctrl, rd_ctrl, wd_ctrl, wb_mux_ctrl, fwd_dm_ctrl, 
+  beq_and_in, fwd_ctrl_a, fwd_ctrl_b, b_w_enable, b_alu_ctrl, b_r_i_sel_ctrl, b_rd_ctrl, b_wd_ctrl, b_wb_mux_ctrl, 
+  b_fwd_dm_ctrl, b_beq_and_in, b_fwd_ctrl_a, b_fwd_ctrl_b);
+  
+  CONTROLLER CTRLR(if_id_inst, id_ex_inst, ex_dm_inst, id_ex_wb_addr, ex_dm_wb_addr, r_enable, w_enable, 
+  alu_ctrl, buble_mux_ctrl, if_id_reg_ctrl, pcw_ctrl, rd_addr_ctrl, rd_enable_ctrl, r_i_sel_ctrl, rd_ctrl,
+  wd_ctrl, wb_mux_ctrl, fwd_dm_ctrl, beq_and_in, fwd_ctrl_a, fwd_ctrl_b);
+  
+  endmodule

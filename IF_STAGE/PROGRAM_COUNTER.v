@@ -17,7 +17,7 @@ module PROGRAM_COUNTER(
       always @(pc_in or pc_ctrl or clk)
         begin
           if(pc_ctrl)
-            @(posedge clk)
+            //@(posedge clk)
             pc_out = pc_in;
         end
     

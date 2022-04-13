@@ -11,7 +11,7 @@ input [15:0] sign_ext_in
 );
 
 wire [31:0] rt_sign_ext_out, alu_ip_1, alu_ip_2, sign_ext_addr;
-wire [1:0] alu_op_ctrl;
+wire [3:0] alu_op_ctrl;
 wire beq_in, beq_inst;
 
 SIGNED_EXT SE(sign_ext_in,sign_ext_addr);

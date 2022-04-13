@@ -47,20 +47,6 @@ Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 Top level modules:
 	ALU_B_FWD
 
-} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU_BLOCK.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU_BLOCK.v
-Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
--- Compiling module ALU_BLOCK
-
-Top level modules:
-	ALU_BLOCK
-
-} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU_CONTROLLER.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU_CONTROLLER.v
-Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
--- Compiling module ALU_CONTROLLER
-
-Top level modules:
-	ALU_CONTROLLER
-
 } {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/TEST_BENCH_IF.v {2 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/TEST_BENCH_IF.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 -- Compiling module TEST_BENCH_IF
@@ -79,19 +65,19 @@ Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 Top level modules:
 	REGISTER_STAGE2
 
-} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/PROGRAM_COUNTER.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/PROGRAM_COUNTER.v
-Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
--- Compiling module PROGRAM_COUNTER
-
-Top level modules:
-	PROGRAM_COUNTER
-
 } {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/IF_ID_SB.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/IF_ID_SB.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 -- Compiling module IF_ID_SB
 
 Top level modules:
 	IF_ID_SB
+
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/PROGRAM_COUNTER.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/PROGRAM_COUNTER.v
+Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
+-- Compiling module PROGRAM_COUNTER
+
+Top level modules:
+	PROGRAM_COUNTER
 
 } {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ID_STAGE.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ID_STAGE.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
@@ -142,14 +128,13 @@ Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 Top level modules:
 	WB_MUX
 
-} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU.v
+} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU.v {0 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 -- Compiling module ALU
+** Error: /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU.v(106): (vlog-2110) Illegal reference to net "beq_inst".
+** Error: /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/ALU.v(111): (vlog-2110) Illegal reference to net "beq_inst".
 
-Top level modules:
-	ALU
-
-} {} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BUB_CONTROLLER.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BUB_CONTROLLER.v
+} {4.0 6.0} {}} /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BUB_CONTROLLER.v {1 {vlog -work work -vopt -nocovercells /nfs/home/a/ab_arumu/MIPS_CAD_PROJECT/BUB_CONTROLLER.v
 Model Technology ModelSim SE-64 vlog 6.6g Compiler 2012.05 May 23 2012
 -- Compiling module BUB_CONTROLLER
 
