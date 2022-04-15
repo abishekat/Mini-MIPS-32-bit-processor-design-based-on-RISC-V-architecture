@@ -1,5 +1,6 @@
-# CAD_PROJECT
+# CAD_PROJECT - GROUP #12
 Source code for Simulation CAD Project - Concordia U
+
 
 Steps for executing the code
 ------------------------------
@@ -37,29 +38,29 @@ While adding each file, make sure to enable "copy to project directory" in the "
 Below you can find the list of project files (all of them must be added to the project) along with a brief description
 ------------------------------------------------------------------------------------------------------------------------
 
- ALU\ALU.v  --> this module is in charge of processing the instructions supported by the MIPS, it will receive the operands and the ALU operation control as inputs to compute the result depending on which type of instruction is being proccessed such as: ORI, SLL.
+ ALU\ALU.v  --> This module is in charge of processing the instructions supported by the MIPS, it will receive the operands and the ALU operation control as inputs to compute the result depending on which type of instruction is being proccessed such as: ORI, SLL.
 
- ALU\ALU_A_FWD.v  --> this module is part of the ALU block and will compute the first operand for the main ALU (ALU A Operand), this module will no compute the final result of ALU.
+ ALU\ALU_A_FWD.v  --> This module is part of the ALU block and will compute the first operand for the main ALU (ALU A Operand), this module will no compute the final result of ALU.
 
- ALU\ALU_B_FWD.v  --> this module is part of the ALU block and will compute the second operand for the main ALU (ALU B Operand), this module will no compute the final result of ALU.
+ ALU\ALU_B_FWD.v  --> This module is part of the ALU block and will compute the second operand for the main ALU (ALU B Operand), this module will no compute the final result of ALU.
 
- ALU\ALU_BLOCK.v  --> this module is in charge of invoking all the sub modules of the alu pipeline such as: ALU.v, ALU_A_FWD.v, ALU_B_FWD.v.
+ ALU\ALU_BLOCK.v  --> This module is in charge of invoking all the sub modules of the alu pipeline such as: ALU.v, ALU_A_FWD.v, ALU_B_FWD.v.
 
- ALU\ALU_CONTROLLER.v  --> this module receives the instruction from ID stage and return the ALU operation control and a value depending if the instruction is branch if equal.
+ ALU\ALU_CONTROLLER.v  --> This module receives the instruction from ID stage and return the ALU operation control and a value depending if the instruction is branch if equal.
 
- ALU\BEQ_ALU.v  -->  this module calculates the sum operation of PC value and Signed Extended operation.
+ ALU\BEQ_ALU.v  -->  This module calculates the sum operation of PC value and Signed Extended operation.
 
- ALU\BEQ_MODULE.v  --> this modules calculates the and operation of branch not equal (BNE) and the value of Branch if Equal computed previously in ALU, if ALU outcome is equal to 0, the Branch if Equal value will be b1 otherwise will ne b1.
+ ALU\BEQ_MODULE.v  --> This modules calculates the and operation of branch not equal (BNE) and the value of Branch if Equal computed previously in ALU, if ALU outcome is equal to 0, the Branch if Equal value will be b1 otherwise will ne b1.
 
  ALU\R_IN_MUX_SEL.v  --> This module selects either the register data or signed extent data as an input for ALU.
 
- ALU\SIGNED_EXT.v  --> this module in charge of assigning either sign extended value or rt value therefore the outcome 
+ ALU\SIGNED_EXT.v  --> This module in charge of assigning either sign extended value or rt value therefore the outcome 
 
- ALU\TB_ALU_BLOCK.v  --> this module is to test the functionality of alu block.
+ ALU\TB_ALU_BLOCK.v  --> This module is to test the functionality of alu block.
 
-DATA_MEM_STAGE\DATA_MEM.v  --> this module will be in charge of reading and writing the data in the data memory.
+DATA_MEM_STAGE\DATA_MEM.v  --> This module will be in charge of reading and writing the data in the data memory.
 
-DATA_MEM_STAGE\DM_ADDR_SEL_MUX.v  --> this module oversees assigning the data which will be written on data memory according to the fwd data memory control valuethis module supervises the allocation of the data to be written in the data memory according to the control value of the forward data memory
+DATA_MEM_STAGE\DM_ADDR_SEL_MUX.v  --> This module oversees assigning the data which will be written on data memory according to the fwd data memory control valuethis module supervises the allocation of the data to be written in the data memory according to the control value of the forward data memory
 
 DATA_MEM_STAGE\DM_PIPELINE.v  --> This module is responsible for invoking all the other modules in the data memory.
 
