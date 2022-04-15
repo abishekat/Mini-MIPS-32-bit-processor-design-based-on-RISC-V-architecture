@@ -51,13 +51,13 @@ Below you can find the list of project files (all of them must be added to the p
 
  ALU\BEQ_MODULE.v  --> this modules calculates the and operation of branch not equal (BNE) and the value of Branch if Equal computed previously in ALU, if ALU outcome is equal to 0, the Branch if Equal value will be b1 otherwise will ne b1.
 
- ALU\R_IN_MUX_SEL.v  --> this module calculates the register mux value 
+ ALU\R_IN_MUX_SEL.v  --> This module selects either the register data or signed extent data as an input for ALU.
 
  ALU\SIGNED_EXT.v  --> this module in charge of assigning either sign extended value or rt value therefore the outcome 
 
- ALU\TB_ALU_BLOCK.v  --> this module is to test the functionality of alu block
+ ALU\TB_ALU_BLOCK.v  --> this module is to test the functionality of alu block.
 
-DATA_MEM_STAGE\DATA_MEM.v  --> this module will be in charge of reading and writing the data in the data memory
+DATA_MEM_STAGE\DATA_MEM.v  --> this module will be in charge of reading and writing the data in the data memory.
 
 DATA_MEM_STAGE\DM_ADDR_SEL_MUX.v  --> this module oversees assigning the data which will be written on data memory according to the fwd data memory control valuethis module supervises the allocation of the data to be written in the data memory according to the control value of the forward data memory
 
@@ -84,29 +84,30 @@ DATA_MEM_STAGE\TB_DM_PIPELINE.v  --> This module has the purpose of executing th
 
  IF_STAGE\PC_TEST_BENCH.v  -->  This module is responsible to test the program counter module sending test data values.
 
- IF_STAGE\PROGRAM_COUNTER.v  -->
+ IF_STAGE\PROGRAM_COUNTER.v  --> This module points the current instruction.
 
- IF_STAGE\TEST_BENCH_IF.v  -->
+ IF_STAGE\TEST_BENCH_IF.v  --> This module is responsible to test Instruction Fetch Module sending test data values.
 
- REGISTER_STAGE_2\RD_ADDR_MUX.v  -->
+ REGISTER_STAGE_2\RD_ADDR_MUX.v  --> This module selects rt, rd and gives the register address to be read.
 
- REGISTER_STAGE_2\REGISTERS_STAGE2.v  -->
 
- REGISTER_STAGE_2\TB_REG_STAGE2.v  -->
+ REGISTER_STAGE_2\REGISTERS_STAGE2.v  --> This module is responsible to write the data into the register file, it gets rs, rt address and give their data and also write back the data in the address depending on control signals.
 
- STAGE_BUFFERS\DM_WB_SB.v  -->
+ REGISTER_STAGE_2\TB_REG_STAGE2.v  --> This module is responsible to test REGISTERS_STAGE2 Module sending test data values.
 
- STAGE_BUFFERS\EX_DM_SB.v  -->
+ STAGE_BUFFERS\DM_WB_SB.v  --> This module is responsible to write the outcome of the Data Memory Stage to the buffer located between Data Memory and Write Back Stage, and Write Back Stage will receive it as an input argument.
 
- STAGE_BUFFERS\ID_EX_SB.v  -->
+ STAGE_BUFFERS\EX_DM_SB.v  --> This module is responsible to write the outcome of the Execution Stage to the buffer located between Execution and Data Memory Stage, and Data Memory Stage will receive it as an input argument.
 
- STAGE_BUFFERS\IF_ID_SB.v  -->
+ STAGE_BUFFERS\ID_EX_SB.v  --> This module is responsible to write the outcome of the Instruction Decode Stage to the buffer located between Instruction Decode and Execution Stage, and Execution Stage will receive it as an input argument.
 
- STAGE_BUFFERS\TB_IF_ID.v  -->
+ STAGE_BUFFERS\IF_ID_SB.v  --> This module is responsible to write the outcome of the Instruction Fetch Stage to the buffer located between Instruction Fetch and Instruction Decode Stage, and Instruction Decode Stage will receive it as an input argument.
 
- WB_STAGE\WB_MUX.v  -->
+ STAGE_BUFFERS\TB_IF_ID.v  --> This module is responsible to test ID_STAGE module  sending test data values.
 
- MIPS32.v  -->
+ WB_STAGE\WB_MUX.v  --> This module selects the data to written or not in the register file.
+
+ MIPS32.v  --> This module is the entire pipeline for running all MIPS stages, it triggers all the modules previously mentioned.
 
 
 
