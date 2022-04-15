@@ -65,23 +65,24 @@ DATA_MEM_STAGE\DM_PIPELINE.v  --> This module is responsible for invoking all th
 
 DATA_MEM_STAGE\TB_DM_PIPELINE.v  --> This module has the purpose of executing the data memory pipeline and sending test data to test its operation.
 
- ID_STAGE\BUB_CONTROLLER.v  -->
+ ID_STAGE\BUB_CONTROLLER.v  --> This module for sending stall signals.
 
- ID_STAGE\BUBLE.v  -->
+ ID_STAGE\BUBLE.v  --> This module performs store operations.
 
- ID_STAGE\CONTROLLER.v  -->
+ ID_STAGE\CONTROLLER.v  --> This module helps in actuation the other units to allow data flow correctly in the pipeline.
 
- ID_STAGE\ID_STAGE.v  -->
+ ID_STAGE\ID_STAGE.v  -->  This module helps to decode the instruction from the stage buffer and also send the data and control signals to the following stage buffer located between Instruction Decode and Execution Stage, it also is responsible for invoking all the other modules in the ID Stage such as BUBLE, CONTROLLER etc.
 
- IF_STAGE\IF_STAGE.v  -->
+ IF_STAGE\IF_STAGE.v  --> This module is responsible for fetching the instruction and setting the program counter for next instruction, it also invokes all the other modules in Instruction Fetch Stage such as INSTRUCTION_MEMORY, PROGRAM_COUNTER, PC_ADDER_4 etc.
 
- IF_STAGE\INSTRUCTION_MEMORY.v  -->
+ IF_STAGE\INSTRUCTION_MEMORY.v  --> This module is a subsystem of IF stage, and contains the 32-bit instructions for performing the operations.
 
- IF_STAGE\PC_ADDER_4.v  -->
+ IF_STAGE\PC_ADDER_4.v  --> This module increments the Program Counter by 4 for fetching the next instruction.
 
- IF_STAGE\PC_ADDER_BEQ_MUX.v  -->
+ IF_STAGE\PC_ADDER_BEQ_MUX.v  --> This module selects whether the program counter will points to the next Program counter or branch address.
 
- IF_STAGE\PC_TEST_BENCH.v  -->
+
+ IF_STAGE\PC_TEST_BENCH.v  -->  This module is responsible to test the program counter module sending test data values.
 
  IF_STAGE\PROGRAM_COUNTER.v  -->
 
