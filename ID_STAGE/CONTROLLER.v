@@ -14,9 +14,10 @@ module CONTROLLER(
   
   always @(*)
   begin
+    //STALL
   if((id_ex_inst[31:26]==6'b100001)
   &&
-  ((((if_id_inst[31:26]==6'b000000) || (if_id_inst[31:26]==6'b000101))&&((id_ex_inst[20:16]==if_id_inst[25:21]) || (id_ex_inst[20:16]==if_id_inst[20:16])))
+  ((((if_id_inst[31:26]==6'b000000) || (if_id_inst[31:26]==6'b000101))&&((id_ex_inst[20:16]==if_id_inst[25:21]) || (id_ex_inst[20:16]==if_id_inst[20:16]))) // if ID/EX stage is load inst than there is a delay
   ||
   ((id_ex_inst[20:16]==if_id_inst[25:21])
   &&
@@ -37,21 +38,21 @@ module CONTROLLER(
       buble_mux_ctrl = 1'b1;
       if_id_reg_ctrl = 1'b1;
         
-      if((if_id_inst[31:26]==(6'b000000)) ||(if_id_inst[31:26]==(6'b001101))||(if_id_inst[31:26]==(6'b100010))||(if_id_inst[31:26]==(6'b100001))||(if_id_inst[31:26]==(6'b001001)))
+      if((if_id_inst[31:26]==(6'b000000)) ||(if_id_inst[31:26]==(6'b001101))||(if_id_inst[31:26]==(6'b100010))||(if_id_inst[31:26]==(6'b100001))||(if_id_inst[31:26]==(6'b001001))) //R-type,I-type and LW
         begin
           w_enable = 1'b1;
           rd_enable_ctrl = 1'b1;
           wd_ctrl = 1'b0;
         end
       
-      else if((if_id_inst[31:26]==(6'b101000)))
+      else if((if_id_inst[31:26]==(6'b101000))) //for store
         begin
           w_enable = 1'b0;
           rd_enable_ctrl = 1'b0;
           wd_ctrl = 1'b1;
         end
         
-      else if((if_id_inst[31:26]==(6'b000101)))
+      else if((if_id_inst[31:26]==(6'b000101))) //for beq
         begin
           w_enable = 1'b0;
           rd_enable_ctrl = 1'b0;
@@ -62,7 +63,7 @@ module CONTROLLER(
         
         $display("INVALID INSTRUCTION");
         
-        if((if_id_inst[31:26]==6'b000000)||(if_id_inst[31:26]==6'b000101))  // R type and beq
+      if((if_id_inst[31:26]==6'b000000)||(if_id_inst[31:26]==6'b000101))  // R type and bne
             begin
               r_i_sel_ctrl = 1'b0;    //RT
               rd_ctrl = 1'b0;      /// RD, WD Not needed for R type
@@ -145,12 +146,12 @@ module CONTROLLER(
              
              begin
              // FWD UNIT CHECK
-              if(if_id_inst[25:21]==id_ex_wb_addr)
+               if(if_id_inst[25:21]==id_ex_wb_addr) // if ID_stage_RS = EX_stage_RD
                 begin
                   fwd_ctrl_a = 2'b00;
                   fwd_ctrl_b = 2'b10;
                 end
-              else if(id_ex_wb_addr != ex_dm_wb_addr)
+               else if(id_ex_wb_addr != ex_dm_wb_addr) 
                  begin
                    if(if_id_inst[25:21]==ex_dm_wb_addr)
                      begin
@@ -171,14 +172,14 @@ module CONTROLLER(
           if(if_id_inst[31:26]==6'b100001)    ////// for LOAD
             begin
               // FWD Unit check
-              if(if_id_inst[25:21]==id_ex_wb_addr)
+              if(if_id_inst[25:21]==id_ex_wb_addr) // if ID_stage_RS = EX_stage_RD
                 begin
                   fwd_ctrl_a = 2'b00;
                   fwd_ctrl_b = 2'b10;
                 end
               else if(id_ex_wb_addr != ex_dm_wb_addr)
                  begin
-                   if(if_id_inst[25:21]==ex_dm_wb_addr)
+                   if(if_id_inst[25:21]==ex_dm_wb_addr)// if ID_stage_RS = DM_stage_RD
                      begin
                       fwd_ctrl_a = 2'b01;
                       fwd_ctrl_b = 2'b10;
@@ -197,7 +198,7 @@ module CONTROLLER(
             if(if_id_inst[31:26]==6'b101000)    ////// for STORE
             begin
               // FWD Unit A
-              if(if_id_inst[25:21]==id_ex_wb_addr)
+              if(if_id_inst[25:21]==id_ex_wb_addr) // if ID_stage_RS = EX_stage_RD
                 begin
                   fwd_ctrl_a = 2'b00;
                   fwd_ctrl_b = 2'b10;
