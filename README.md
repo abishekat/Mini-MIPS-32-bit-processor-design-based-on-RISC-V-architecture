@@ -110,7 +110,7 @@ DATA_MEM_STAGE\TB_DM_PIPELINE.v  --> This module has the purpose of executing th
 
  MIPS32.v  --> This module is the entire pipeline for running all MIPS stages, it triggers all the modules previously mentioned.
 
-
-
+# University - All rights reserved
+## [Concordia University](https://www.concordia.ca/)
 
 
